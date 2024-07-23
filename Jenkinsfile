@@ -25,8 +25,10 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_id1') {
-                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
+                    withCredentials([string(credentialsId: 'docker_hub_id1', variable: 'docker_hub_var')]) {
+                    sh 'sudo docker login -u daemonaman -p ${docker_hub__var}'
+				    sh 'sudo docker push ${IMAGE_NAME}:${IMAGE_TAG}'
+}
                     }
                 }
             }
