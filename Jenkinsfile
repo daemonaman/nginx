@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sudo docker run nginx -dit -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
+                    sudo docker run -dit nginx -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
