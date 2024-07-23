@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/daemonaman/nginx.git' // Replace with your repository URL
+                git branch: 'main', url: 'https://github.com/daemonaman/nginx.git' // Replace with your repository URL
             }
         }
 
