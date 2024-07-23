@@ -18,7 +18,7 @@ pipeline {
                 script {
                     sh '''
                     sudo docker stop nginx || true
-                    sudo docker rm nginx || true
+                    sudo docker rm $(docker ps -a -q) || true
                     '''
                     sh '''
                     sudo docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sudo docker run -dit nginx -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
+                    sudo docker run -dit --name nginx -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
