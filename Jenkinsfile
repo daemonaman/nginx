@@ -18,10 +18,10 @@ pipeline {
                 script {
                     sh '''
                     sudo docker stop nginx || true
-                    sudo docker rm -f $(docker ps -a -q) || true
+                    sudo docker rm nginx || true
                     '''
                     sh '''
-                    sudo docker rmi $(docker images) || true
+                    sudo docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true
                     '''
                 }
             }
