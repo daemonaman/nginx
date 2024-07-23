@@ -13,15 +13,12 @@ pipeline {
             }
         }
 
-    stage('Remove Old Containers and Images') {
+    stage('Remove Old Containers ') {
             steps {
                 script {
                     sh '''
                     sudo docker stop nginx || true
-                    sudo docker rm $(docker ps -a -q) || true
-                    '''
-                    sh '''
-                    sudo docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true
+                    sudo docker rm -f $(docker ps -a -q) || true
                     '''
                 }
             }
@@ -45,12 +42,13 @@ pipeline {
                 }
             }
         }
-    }
-
-    post {
-        always {
-            echo 'Cleaning up...'
-            cleanWs()
+        stage('Remove Old images ') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker rmi $(docker images) || true
+                    '''
+                }
+            }
         }
     }
-}
