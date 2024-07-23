@@ -2,7 +2,7 @@
 FROM nginx:latest
 
 # Remove the default nginx configuration
-RUN sudo rm -rf /etc/nginx/sites-available/default.conf
+RUN rm -rf /etc/nginx/sites-available/default.conf
 
 # Copy your custom nginx configuration file
 COPY default.conf /etc/nginx/sites-available/
