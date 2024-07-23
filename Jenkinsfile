@@ -13,6 +13,21 @@ pipeline {
             }
         }
 
+    stage('Remove Old Containers and Images') {
+            steps {
+                script {
+                    sh '''
+                    sudo docker stop nginx || true
+                    sudo docker rm nginx || true
+                    '''
+                    sh '''
+                    sudo docker rmi ${IMAGE_NAME}:${IMAGE_TAG} || true
+                    '''
+                }
+            }
+        }
+
+
         stage('Build') {
             steps {
                 script {
@@ -25,7 +40,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sudo docker run -dit -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
+                    sudo docker run nginx -dit -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
