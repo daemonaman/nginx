@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    docker run -d -p 8080:80 ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+                    docker run -dIT -p 8080:80 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
