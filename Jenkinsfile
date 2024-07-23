@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    sudo docker run -dit -p 8080:80 ${IMAGE_NAME}:${IMAGE_TAG}
+                    sudo docker run -dit -p 8081:80 ${IMAGE_NAME}:${IMAGE_TAG}
                     '''
                 }
             }
