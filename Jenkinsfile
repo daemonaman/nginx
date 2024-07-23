@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'my-nginx-app'
-        DOCKER_REGISTRY = 'your-docker-registry' // Example: 'docker.io/yourusername'
+        DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/daemonaman/' // Example: 'docker.io/yourusername'
         IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/yourrepository.git' // Replace with your repository URL
+                git 'https://github.com/daemonaman/nginx.git' // Replace with your repository URL
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-credentials') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_id1') {
                         docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
                     }
                 }
