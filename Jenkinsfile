@@ -12,6 +12,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/daemonaman/nginx.git' 
             }
         }
+    }
 
     stage('Remove Old Containers and images') {
             steps {
