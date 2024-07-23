@@ -3,14 +3,13 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'my-nginx-app'
-        DOCKER_REGISTRY = 'https://hub.docker.com/repository/docker/daemonaman/' // Example: 'docker.io/yourusername'
         IMAGE_TAG = 'latest'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/daemonaman/nginx.git' // Replace with your repository URL
+                git branch: 'main', url: 'https://github.com/daemonaman/nginx.git' 
             }
         }
 
